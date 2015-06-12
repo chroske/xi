@@ -147,18 +147,20 @@ public class PlayerDiceManager : MonoBehaviour {
 		}
 	}
 
+	//操作サイコロの前後左右チェック
 	public bool checkBreakDice (int myNum){
 		int playerDiceTopNum = diceNumberPosition[dicePosition[myNum,0],dicePosition[myNum,1]];
-		if(playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0]+1,dicePosition[myNum,1]]) {
+
+		if(diceNumberPosition.GetLength(0) > dicePosition[myNum,0]+1 && playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0]+1,dicePosition[myNum,1]]) {
 			return true;
 		}
-		if(playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0]-1,dicePosition[myNum,1]]) {
+		if(dicePosition[myNum,0]-1 > 0 && playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0]-1,dicePosition[myNum,1]]) {
 			return true;
 		}
-		if(playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0],dicePosition[myNum,1]+1]) {
+		if(diceNumberPosition.GetLength(1) > dicePosition[myNum,1]+1 && playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0],dicePosition[myNum,1]+1]) {
 			return true;
 		}
-       	if(playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0],dicePosition[myNum,1]-1]) {
+		if(dicePosition[myNum,1]-1 > 0 && playerDiceTopNum == diceNumberPosition[dicePosition[myNum,0],dicePosition[myNum,1]-1]) {
 			return true;
 		}
 
