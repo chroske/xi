@@ -25,10 +25,7 @@ public class EditorExWindow : EditorWindow
 		GUILayout.Label( "TextArea" );
 		textArea = GUILayout.TextArea( textArea );
 
-	}
-
-	//static List<GameObject> TrueObjects =  new List<GameObject>();
-	 
+	}	 
 
 	private void Find (){
 		// TextAreaクリア
@@ -47,7 +44,6 @@ public class EditorExWindow : EditorWindow
 			if (isScene)
 			{
 				// GameObjectの名前を表示.
-				//textArea += obj.name + "\n";
 				AllObjects.Add (obj);
 			}
 		}
@@ -56,19 +52,16 @@ public class EditorExWindow : EditorWindow
 
 		foreach(var componentData in allMonobehaviourList){
 			foreach(MemberInfo mi in componentData.GetType().GetMembers(BindingFlags.Public | BindingFlags.Instance |  BindingFlags.DeclaredOnly)){
-				textArea += mi.Name + "\n";
+
+				FieldInfo field = componentData.GetType().GetField(mi.Name);
+				if(field != null){
+					var  value = field.GetValue(componentData);
+					textArea +=  componentData.gameObject + " " + mi.Name + "=" + value + "\n";
+				}
+
+
 			}
 		}
-
-//		for(int i=0; i<= allMonobehaviourList.Count; i++){
-//			foreach(MemberInfo mi in allMonobehaviourList[i].GetType().GetMembers(BindingFlags.Public | BindingFlags.Instance |  BindingFlags.DeclaredOnly)){
-//
-//				PropertyInfo pr = allMonobehaviourList[i].GetType().GetProperty(mi.Name);
-//				//object resobj = pr.GetValue(TrueObjects[i], null);
-//
-//				textArea += mi.Name + "\n";
-//			}
-//		}
 	}
 
 	public static IEnumerable<T> GetComponentsInList<T> (IEnumerable<GameObject> gameObjects ) where T : Component 
