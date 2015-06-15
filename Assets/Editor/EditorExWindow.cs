@@ -58,8 +58,6 @@ public class EditorExWindow : EditorWindow
 					var  value = field.GetValue(componentData);
 					textArea +=  componentData.gameObject + " " + mi.Name + "=" + value + "\n";
 				}
-
-
 			}
 		}
 	}
