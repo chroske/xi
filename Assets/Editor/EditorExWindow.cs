@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.Serialization.Json;  //json生成用
+using MiniJSON;
 
 
 public class EditorExWindow : EditorWindow
@@ -63,6 +63,11 @@ public class EditorExWindow : EditorWindow
 				FieldInfo field = componentData.GetType().GetField(mi.Name);
 				if(field != null){
 					var value = field.GetValue(componentData);
+
+					if(value != null){
+						value = Json.Serialize(value);
+					}
+
 					textArea +=  componentData.gameObject.name + " " + componentData.GetType() + " " + mi.Name + "=" + value + "\n";
 				}
 			}

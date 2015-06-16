@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\EditorExWindow.cs" />
+     <Compile Include="Assets\Editor\Plugins\MiniJSON.cs" />
      <Compile Include="Assets\Editor\ScanData.cs" />
      <Compile Include="Assets\Editor\SearchCodeInSceneWindow.cs" />
      <None Include="Assets\Dice\-Read-Me-.txt" />
